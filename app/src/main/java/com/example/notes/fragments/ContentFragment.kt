@@ -16,6 +16,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notes.MainActivity
@@ -67,6 +69,8 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
         binding.recyclerView.layoutManager=layoutManager
 
 
+
+
         binding.button.setOnClickListener {
             submitData(binding)
         }
@@ -95,7 +99,7 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
 
     override fun onItemClicked(note: Note) {
         viewModel.deleteNode(note)
-        Toast.makeText(context,"${note.text} Deleted", Toast.LENGTH_SHORT).show() //
+        Toast.makeText(context,"Note Deleted", Toast.LENGTH_SHORT).show() //
     }
 
 
@@ -115,8 +119,13 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
         }
     }
 
+    //////////////////////////////////////////////////////
+
     override fun onItemClicked_1(note: Note) {
-        Toast.makeText(context,"${note.text} selected", Toast.LENGTH_SHORT).show()
+        Log.v("nav","navigaton")
+        val action= ContentFragmentDirections.actionContentFragmentToDetailsFragment(note.text,note.id)
+        view?.findNavController()?.navigate(action)
+//        Toast.makeText(context,"${note.text} selected id ${note.id}", Toast.LENGTH_SHORT).show()
 
 
     }

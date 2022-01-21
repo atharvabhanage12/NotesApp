@@ -7,5 +7,20 @@
     <fragment
         android:id="@+id/contentFragment"
         android:name="com.example.notes.fragments.ContentFragment"
-        android:label="Notepad" />
+        android:label="Notepad" >
+        <action
+            android:id="@+id/action_contentFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.notes.fragments.DetailsFragment"
+        android:label="Note" >
+        <argument
+            android:name="notecontent"
+            app:argType="string" />
+        <argument
+            android:name="noteid"
+            app:argType="integer" />
+    </fragment>
 </navigation>

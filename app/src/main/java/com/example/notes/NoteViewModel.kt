@@ -35,5 +35,9 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         return repository.searchNotes(searchQuery)
     }
 
+    fun searchtext(searchid:Int) : LiveData<List<Note>>{
+        return repository.searchnote(searchid)
+    }
+
 
 }

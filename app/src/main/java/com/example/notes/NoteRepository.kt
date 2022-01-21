@@ -13,6 +13,10 @@ class NoteRepository(private val noteDoa:NoteDao) {
         return noteDoa.searchDatabase(searchQuery)
     }
 
+    fun searchnote(searchQuery: Int) : LiveData<List<Note>>{
+        return  noteDoa.searchtext(searchQuery)
+    }
+
     suspend fun insert(note:Note){
         noteDoa.insert(note)
     }

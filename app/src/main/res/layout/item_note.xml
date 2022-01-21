@@ -25,6 +25,9 @@
             android:gravity="left|center_vertical"
             android:inputType="textMultiLine"
             android:lines="3"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeStepGranularity="2sp"
 
 
             android:maxLines="3"
