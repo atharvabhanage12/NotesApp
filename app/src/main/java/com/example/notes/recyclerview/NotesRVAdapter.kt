@@ -15,17 +15,23 @@ import org.w3c.dom.Text
 import kotlin.math.log
 
 
-class NotesRVAdapter(private val context : Context, private val listner:INotesRVAdapter) :RecyclerView.Adapter<NotesRVAdapter.NoteViewHolder>() {
+class NotesRVAdapter(private val context : Context?, private val listner:INotesRVAdapter,private val listner_1:INotesRVAdapter_1) :RecyclerView.Adapter<NotesRVAdapter.NoteViewHolder>() {
 
 
     val allNotes = ArrayList<Note>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
+
+
         val viewHolder= NoteViewHolder(LayoutInflater.from(context).inflate(R.layout.item_note,parent,false))
 
         viewHolder.deleteButton.setOnClickListener {
             listner.onItemClicked(allNotes[viewHolder.adapterPosition])
         }
+        viewHolder.textView.setOnClickListener {
+            listner_1.onItemClicked_1(allNotes[viewHolder.adapterPosition])
+        }
+
 
         return viewHolder
     }
@@ -61,4 +67,7 @@ class NotesRVAdapter(private val context : Context, private val listner:INotesRV
 
 interface INotesRVAdapter{
     fun onItemClicked(note: Note)
+}
+interface INotesRVAdapter_1{
+    fun onItemClicked_1(note: Note)
 }

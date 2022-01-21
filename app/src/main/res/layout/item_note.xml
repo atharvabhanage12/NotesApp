@@ -15,11 +15,11 @@
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
 
 
-            android:background="#DCC114"
+            android:background="#00BCD4"
             android:padding="16dp"
             android:text="TextView"
             android:textColor="#212121"
