@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#78EC9C"
+    android:background="#8391ED"
     >
 
     <LinearLayout
@@ -16,5 +16,6 @@
             android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:navGraph="@navigation/navigation"/>
+
     </LinearLayout>
 </layout>

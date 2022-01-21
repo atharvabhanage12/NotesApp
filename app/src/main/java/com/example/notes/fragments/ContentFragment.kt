@@ -3,14 +3,14 @@ package com.example.notes.fragments
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ActionBarContextView
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -30,12 +30,28 @@ import com.example.notes.recyclerview.INotesRVAdapter_1
 import com.example.notes.recyclerview.NotesRVAdapter
 
 
-class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1 {
+class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchView.OnQueryTextListener {
 
     private lateinit var binding: FragmentContentBinding
 
     lateinit var viewModel: NoteViewModel
     private var layoutManager: RecyclerView.LayoutManager?=null
+    private lateinit var adapter : NotesRVAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.search_menu,menu)
+        val search = menu.findItem(R.id.search_bar)
+        Log.i("menu inflate","inflated working")
+        val searchView =search?.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled =true
+        searchView?.setOnQueryTextListener(this)
+    }
 
 
     override fun onCreateView(
@@ -55,7 +71,7 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1 {
             submitData(binding)
         }
 
-        val adapter= NotesRVAdapter( this.context ,this,this) //
+        adapter= NotesRVAdapter( this.context ,this,this) //
 
 
         binding.recyclerView.adapter=adapter
@@ -72,12 +88,14 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1 {
 
 
 
+
+
         return binding.root
     }
 
     override fun onItemClicked(note: Note) {
         viewModel.deleteNode(note)
-        Toast.makeText(context,"${note.text} Deleted", Toast.LENGTH_LONG).show() //
+        Toast.makeText(context,"${note.text} Deleted", Toast.LENGTH_SHORT).show() //
     }
 
 
@@ -93,15 +111,36 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1 {
 
         if(noteTexts.isNotEmpty()){
             viewModel.insertNode(Note(noteTexts))
-            Toast.makeText(context,"${noteTexts} Inserted", Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"${noteTexts} Inserted", Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun onItemClicked_1(note: Note) {
-        Toast.makeText(context,"${note.text} selected", Toast.LENGTH_LONG).show()
+        Toast.makeText(context,"${note.text} selected", Toast.LENGTH_SHORT).show()
 
 
     }
 
 
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query!=null){
+            searchDatabase(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if(query!=null){
+            searchDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchDatabase(query: String?){
+        val searchQuery= "%$query%"
+
+        viewModel.searchDatabase(searchQuery).observe(this,{list->
+            list.let{adapter.updateList(it) }
+        })
+    }
 }

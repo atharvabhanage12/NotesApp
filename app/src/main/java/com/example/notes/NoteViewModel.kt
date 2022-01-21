@@ -31,5 +31,9 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         repository.insert(note)
     }
 
+    fun searchDatabase(searchQuery: String) : LiveData<List<Note>>{
+        return repository.searchNotes(searchQuery)
+    }
+
 
 }
