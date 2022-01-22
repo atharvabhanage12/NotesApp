@@ -112,6 +112,7 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
 //        Toast.makeText(this,"clicked ${noteText.text}",Toast.LENGTH_LONG).show()
 
         val noteTexts=  noteText.text.toString()
+        noteText.setText("")
 
         if(noteTexts.isNotEmpty()){
             viewModel.insertNode(Note(noteTexts))
@@ -123,7 +124,7 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
 
     override fun onItemClicked_1(note: Note) {
         Log.v("nav","navigaton")
-        val action= ContentFragmentDirections.actionContentFragmentToDetailsFragment(note.text,note.id)
+        val action= ContentFragmentDirections.actionContentFragmentToDetailsFragment(note.id)
         view?.findNavController()?.navigate(action)
 //        Toast.makeText(context,"${note.text} selected id ${note.id}", Toast.LENGTH_SHORT).show()
 

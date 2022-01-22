@@ -17,10 +17,23 @@
         android:name="com.example.notes.fragments.DetailsFragment"
         android:label="Note" >
         <argument
-            android:name="notecontent"
-            app:argType="string" />
-        <argument
             android:name="noteid"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailsFragment_to_editDetailsFragment"
+            app:destination="@id/editDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editDetailsFragment"
+        android:name="com.example.notes.fragments.EditDetailsFragment"
+        android:label="EditNote" >
+        <argument
+            android:name="editid"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editDetailsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/contentFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>
