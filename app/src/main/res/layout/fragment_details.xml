@@ -11,36 +11,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/detailstitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="184dp"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.238" />
+
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/scrollView2"
+            android:layout_width="409dp"
+            android:layout_height="602dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:orientation="vertical">-->
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:orientation="vertical">-->
 
             <TextView
                 android:id="@+id/ouputText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:inputType="textMultiLine"
+                android:layout_marginLeft="20dp"
 
+                android:layout_marginTop="90sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:inputType="textMultiLine"
                 android:scrollbars="vertical"
                 android:text="TextView\nhihshihsh"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 app:autoSizeMaxTextSize="100sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp" />
 
 
-<!--            </LinearLayout>-->
+            <!--            </LinearLayout>-->
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

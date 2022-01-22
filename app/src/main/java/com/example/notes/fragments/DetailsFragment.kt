@@ -76,6 +76,7 @@ class DetailsFragment : Fragment() {
 
         idtemp=args.noteid
 
+
         textdisplay(args.noteid,binding,viewmodel)
 
 
@@ -94,6 +95,7 @@ class DetailsFragment : Fragment() {
             val answer=viewmodel.searchtext(query)
             answer.observe(this,{list->
                 binding.ouputText.text= list[0].text
+                binding.detailstitle.text= list[0].title
 
             })
 

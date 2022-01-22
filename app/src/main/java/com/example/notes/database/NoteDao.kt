@@ -12,8 +12,8 @@ interface NoteDao {
     @Delete
     suspend fun delete(note: Note)
 
-    @Query("UPDATE notes_table SET note_text = :query_text WHERE id =:givenid")
-    suspend fun update(givenid:Int,query_text:String)
+    @Query("UPDATE notes_table SET note_text = :query_text , note_title= :query_title  WHERE id =:givenid")
+    suspend fun update(givenid:Int,query_title:String,query_text:String)
 
     @Query("SELECT * FROM notes_table order by id ASC")
     fun getAllNotes(): LiveData<List<Note>>

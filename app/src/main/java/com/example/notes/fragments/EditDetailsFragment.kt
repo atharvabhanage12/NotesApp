@@ -88,9 +88,13 @@ class EditDetailsFragment : Fragment() {
         textdisplay(args.editid,binding,viewmodel)
 
         flag.observe(viewLifecycleOwner, {
+//            flag.value=1
             if(it==0){
                 val textToSave:String= binding.editText.text.toString()
-                viewmodel.updateNode(args.editid,textToSave)
+                val titleToSave:String =binding.editdetailstitle.text.toString()
+                viewmodel.updateNode(args.editid,titleToSave,textToSave)
+
+
 
                 val action= EditDetailsFragmentDirections.actionEditDetailsFragmentToDetailsFragment(args.editid)
                 view?.findNavController()?.navigate(action)
@@ -112,6 +116,7 @@ class EditDetailsFragment : Fragment() {
             val answer=viewmodel.searchtext(query)
             answer.observe(viewLifecycleOwner,{list->
                 binding.editText.setText(list[0].text)
+                binding.editdetailstitle.setText(list[0].title)
 
             })
 
