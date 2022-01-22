@@ -108,14 +108,18 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
 //        val binding=ActivityMainBinding.inflate(layoutInflater)
         val noteText: EditText = binding.input // findViewById(R.id.input)
 //        val nnn="ksks"
+        val noteTitle: EditText= binding.textView2
 
 //        Toast.makeText(this,"clicked ${noteText.text}",Toast.LENGTH_LONG).show()
 
         val noteTexts=  noteText.text.toString()
+
+        val noteTitles =noteTitle.text.toString()
         noteText.setText("")
+        noteTitle.setText("")
 
         if(noteTexts.isNotEmpty()){
-            viewModel.insertNode(Note(noteTexts))
+            viewModel.insertNode(Note(noteTitles,noteTexts))
             Toast.makeText(context,"${noteTexts} Inserted", Toast.LENGTH_SHORT).show()
         }
     }

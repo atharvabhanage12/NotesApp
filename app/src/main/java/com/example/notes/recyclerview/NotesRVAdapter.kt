@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ class NotesRVAdapter(private val context : Context?, private val listner:INotesR
 
 
     val allNotes = ArrayList<Note>()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
 
@@ -43,7 +45,7 @@ class NotesRVAdapter(private val context : Context?, private val listner:INotesR
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         Log.i("RV postion",position.toString())
         val currenNote= allNotes[position]
-        holder.textView.text= currenNote.text
+        holder.textView.text= currenNote.title
     }
 
 
@@ -59,6 +61,7 @@ class NotesRVAdapter(private val context : Context?, private val listner:INotesR
     inner class NoteViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         var textView:TextView=itemView.findViewById(R.id.text)
         val deleteButton:ImageView =itemView.findViewById(R.id.deleteButton)
+
 
     }
 
