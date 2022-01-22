@@ -118,10 +118,10 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
         noteText.setText("")
         noteTitle.setText("")
 
-        if(noteTexts.isNotEmpty()){
+//        if(noteTexts.isNotEmpty()){
             viewModel.insertNode(Note(noteTitles,noteTexts))
             Toast.makeText(context,"${noteTexts} Inserted", Toast.LENGTH_SHORT).show()
-        }
+//        }
     }
 
     //////////////////////////////////////////////////////
