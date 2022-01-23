@@ -30,8 +30,8 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     fun insertNode(note : Note) = viewModelScope.launch(Dispatchers.IO){
         repository.insert(note)
     }
-    fun updateNode(givenid:Int,query_title:String,query_text:String) =viewModelScope.launch(Dispatchers.Default) {
-        repository.update(givenid,query_title,query_text)
+    fun updateNode(givenid:Int,query_title:String,query_text:String,latest_time:String) =viewModelScope.launch(Dispatchers.Default) {
+        repository.update(givenid,query_title,query_text,latest_time)
     }
 
     fun searchDatabase(searchQuery: String) : LiveData<List<Note>>{

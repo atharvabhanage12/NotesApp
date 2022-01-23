@@ -1,5 +1,6 @@
 package com.example.notes.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import android.widget.EditText
@@ -16,7 +17,12 @@ import com.example.notes.R
 import com.example.notes.databinding.FragmentDetailsBinding
 import com.example.notes.databinding.FragmentEditDetailsBinding
 import kotlinx.coroutines.flow.combine
+import java.text.SimpleDateFormat
+import java.util.*
 
+
+@SuppressLint("SimpleDateFormat")
+private val sdf= SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
 
 class EditDetailsFragment : Fragment() {
 
@@ -92,7 +98,8 @@ class EditDetailsFragment : Fragment() {
             if(it==0){
                 val textToSave:String= binding.editText.text.toString()
                 val titleToSave:String =binding.editdetailstitle.text.toString()
-                viewmodel.updateNode(args.editid,titleToSave,textToSave)
+                val now = sdf.format(Date())
+                viewmodel.updateNode(args.editid,titleToSave,textToSave,now)
 
 
 

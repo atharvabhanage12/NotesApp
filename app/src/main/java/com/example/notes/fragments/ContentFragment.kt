@@ -1,5 +1,6 @@
 package com.example.notes.fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
@@ -30,6 +31,11 @@ import com.example.notes.databinding.FragmentContentBinding
 import com.example.notes.recyclerview.INotesRVAdapter
 import com.example.notes.recyclerview.INotesRVAdapter_1
 import com.example.notes.recyclerview.NotesRVAdapter
+import java.text.SimpleDateFormat
+import java.util.*
+
+@SuppressLint("SimpleDateFormat")
+private val sdf= SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
 
 
 class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchView.OnQueryTextListener {
@@ -118,8 +124,10 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
         noteText.setText("")
         noteTitle.setText("")
 
+        val now = sdf.format(Date())
+
 //        if(noteTexts.isNotEmpty()){
-            viewModel.insertNode(Note(noteTitles,noteTexts))
+            viewModel.insertNode(Note(noteTitles,noteTexts,now))
             Toast.makeText(context,"${noteTexts} Inserted", Toast.LENGTH_SHORT).show()
 //        }
     }
@@ -128,7 +136,12 @@ class ContentFragment :  Fragment(), INotesRVAdapter, INotesRVAdapter_1,SearchVi
 
     override fun onItemClicked_1(note: Note) {
         Log.v("nav","navigaton")
+        var latest1=sdf.format(Date())
+        viewModel.updateNode(note.id,note.title,note.text,latest1)
+
         val action= ContentFragmentDirections.actionContentFragmentToDetailsFragment(note.id)
+//        val now1 = sdf.format(Date())
+
         view?.findNavController()?.navigate(action)
 //        Toast.makeText(context,"${note.text} selected id ${note.id}", Toast.LENGTH_SHORT).show()
 

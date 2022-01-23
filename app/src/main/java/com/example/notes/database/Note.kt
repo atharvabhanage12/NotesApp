@@ -11,9 +11,10 @@ class Note(
     val title:String,
 
     @ColumnInfo(name = "note_text")
-    val text:String
+    val text:String ,
 
-    
+    @ColumnInfo(name = "latest_change")
+    val datetime : String
 
 
 
