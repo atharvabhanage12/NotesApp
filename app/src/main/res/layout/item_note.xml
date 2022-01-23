@@ -20,25 +20,25 @@
 
 
             android:layout_height="95sp"
-            android:background="#00BCD4"
+            android:background="#7affd8"
             android:ellipsize="end"
             android:gravity="left|center_vertical"
             android:inputType="textMultiLine"
             android:lines="3"
-            app:autoSizeMinTextSize="12sp"
-            app:autoSizeMaxTextSize="100sp"
-            app:autoSizeStepGranularity="2sp"
-
-
             android:maxLines="3"
             android:padding="16sp"
             android:scrollbars="vertical"
+
+
             android:singleLine="false"
             android:text="TextView"
-
-
-            android:textColor="#272424"
+            android:textColor="#111111"
             android:textSize="16sp"
+            app:autoSizeMaxTextSize="100sp"
+
+
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeStepGranularity="2sp"
             app:barrierMargin="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

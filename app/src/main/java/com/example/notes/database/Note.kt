@@ -13,6 +13,8 @@ class Note(
     @ColumnInfo(name = "note_text")
     val text:String
 
+    
+
 
 
 ){
